@@ -1,99 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            background-color: rgb(92, 161, 92);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background-color: darkgreen;
-            padding: 0px;
-
-        }
-
-        ul {
-            display: flex;
-            gap: 220px;
-            list-style: none;
-        }
-
-        ul li {
-            color: white;
-            font-size: 25px;
-            cursor: pointer;
-            transition: all 0.6s ease;
-
-        }
-
-
-        li:hover {
-            /* text-shadow: 3px 3px rgb(0, 0, 0); */
-            background-color: white;
-            color: black;
-            transition: all 0.6s ease;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-            border-radius: 3px;
-        }
-
-
-        nav {
-            background-color: darkgreen;
-            padding: 19px;
-            padding-bottom: 33px;
-            animation-name: chakri;
-            animation-duration: 20s;
-            animation-delay: 5s;
-            animation-iteration-count: 1;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        @keyframes chakri {
-            70% {
-                background-color: rgb(10, 183, 206);
-            }
-
-            /* 25% {
-                background-color: rgb(28, 142, 204);
-            }
-
-            50% {
-                background-color: rgb(114, 168, 34);
-            }
-
-            75% {
-                background-color: rgb(203, 157, 20);
-            }
-
-            100% {
-                background-color: rgb(194, 136, 28);
-            } */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Stopwatch</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background-color: #f0f0f0;
+    }
+    #display {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    button {
+      font-size: 18px;
+      margin: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>     
 </head>
+<body>   
 
-<body>
-    <nav>
-        <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>learn</li>
-            <li>Contact</li>
-            <li>Search</li>
-            <li>Settings</li>
-        </ul>
-    </nav>
+  <div id="display">00:00:00.000</div>
+  <button onclick="start()">Start</button>
+  <button onclick="stop()">Stop</button>
+  <button onclick="reset()">Reset</button>
+
+  <script>
+    let startTime, timerInterval, running = false;
+        
+    function start() {
+      if (!running) {
+        running = true;
+        startTime = Date.now();
+        timerInterval = setInterval(updateTime, 10); // update every 10ms
+      }
+    }
+
+    function stop() {
+      if (running) {
+        running = false;
+        clearInterval(timerInterval);
+      }
+    }
+
+    function reset() {
+      clearInterval(timerInterval);
+      running = false;
+      document.getElementById('display').textContent = "00:00:00.000";
+    }
+
+    function updateTime() {
+      let elapsed = Date.now() - startTime;
+
+      let hours = Math.floor(elapsed / 3600000);
+      let minutes = Math.floor((elapsed % 3600000) / 60000);
+      let seconds = Math.floor((elapsed % 60000) / 1000);
+      let milliseconds = elapsed % 1000;
+
+      document.getElementById('display').textContent =
+        `${pad(hours)}:${pad(minutes)}:${pad(seconds)}.${padMs(milliseconds)}`;
+    }
+
+    function pad(n) {
+      return n < 10 ? '0' + n : n;
+    }
+
+    function padMs(n) {
+      return n.toString().padStart(3, '0');
+    }
+  </script>
+
 </body>
-
 </html>
