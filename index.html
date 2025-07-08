@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(92, 161, 92);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: darkgreen;
+            padding: 0px;
+
+        }
+
+        ul {
+            display: flex;
+            gap: 220px;
+            list-style: none;
+        }
+
+        ul li {
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+            transition: all 0.6s ease;
+
+        }
+
+
+        li:hover {
+            /* text-shadow: 3px 3px rgb(0, 0, 0); */
+            background-color: white;
+            color: black;
+            transition: all 0.6s ease;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+        }
+
+
+        nav {
+            background-color: darkgreen;
+            padding: 19px;
+            padding-bottom: 33px;
+            animation-name: chakri;
+            animation-duration: 20s;
+            animation-delay: 5s;
+            animation-iteration-count: 1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes chakri {
+            70% {
+                background-color: rgb(10, 183, 206);
+            }
+
+            /* 25% {
+                background-color: rgb(28, 142, 204);
+            }
+
+            50% {
+                background-color: rgb(114, 168, 34);
+            }
+
+            75% {
+                background-color: rgb(203, 157, 20);
+            }
+
+            100% {
+                background-color: rgb(194, 136, 28);
+            } */
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>learn</li>
+            <li>Contact</li>
+            <li>Search</li>
+            <li>Settings</li>
+        </ul>
+    </nav>
+</body>
+
+</html>
